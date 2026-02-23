@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "VocaLink API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"teacher@vocalink.local\",\n  \"password\": \"Password123!\"\n}"
+        },
+        "url": "{{baseUrl}}/auth/login"
+      }
+    },
+    {
+      "name": "Phrases - Public by Language",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/phrases/public?language=en"
+      }
+    },
+    {
+      "name": "Phrases - List (Auth)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/phrases"
+      }
+    },
+    {
+      "name": "Phrases - Create (Auth)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"I need help.\",\n  \"category\": \"classroom\",\n  \"language\": \"en\"\n}"
+        },
+        "url": "{{baseUrl}}/phrases"
+      }
+    },
+    {
+      "name": "Phrases - Delete (Auth)",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/phrases/1"
+      }
+    },
+    {
+      "name": "Logs - List (Auth)",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{baseUrl}}/logs"
+      }
+    },
+    {
+      "name": "Student - Create Log",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I need water.\",\n  \"source\": \"student\"\n}"
+        },
+        "url": "{{baseUrl}}/student/log"
+      }
+    },
+    {
+      "name": "Captions - Simulate (Auth)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Please open your books to page 10.\"\n}"
+        },
+        "url": "{{baseUrl}}/captions/simulate"
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000/api" },
+    { "key": "token", "value": "" }
+  ]
+}
